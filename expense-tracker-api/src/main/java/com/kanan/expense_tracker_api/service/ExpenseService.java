@@ -19,4 +19,33 @@ public class ExpenseService {
     public List<Expense> getAllExpenses() {
         return expenses;
     }
+    public Expense addExpense(Expense expense) {
+        expenses.add(expense);
+        return expense;
+    }
+
+    public Expense getExpenseById(int id) {
+        for (Expense expense : expenses) {
+            if (expense.getId() == id) {
+                return expense;
+            }
+        }
+        return null;
+    }
+
+    public String deleteExpense(int id) {
+        expenses.removeIf(expense -> expense.getId() == id);
+        return "Expense deleted successfully";
+    }
+
+    public Expense updateExpense(int id, Expense updatedExpense) {
+        for (Expense expense : expenses) {
+            if (expense.getId() == id) {
+                expense.setTitle(updatedExpense.getTitle());
+                expense.setAmount(updatedExpense.getAmount());
+                return expense;
+            }
+        }
+        return null;
+    }
 }
